@@ -89,7 +89,7 @@ Si
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
- ** ¿Cuántos flujos hay? ¿por qué? Dos, uno para el protocolo H.261 y otro para RTP.
+ ** ¿Cuántos flujos hay? ¿por qué? Dos, uno para video y otro para audio.
  ** ¿Cuántos paquetes se pierden? Ninguno.
  ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta? 1290.479 ms para h261 y 1290.444ms para RTP. Es el retardo de un paquete con respecto al anterior.
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
@@ -108,12 +108,12 @@ Si
 	Si, es comparable,porque el jitter varía en función del valor de delta, que en este caso ha sido considerablemente mayor.
 
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
-
+ Para calcular el jitter usamos la formula: J(i)=J(i-1)+(|D(i-1,i)|-J(i-1))/16, donde D(i-1,i) es la diferencia de tiempo de llegada entre un paquete y el anterior, entonces la diferencia es la siguiente: |D(i-1,i)|=J(i)+J(i-1))/16-J(i-1), por tanto el jitter del paquete anterior es: J(i-1). 
 
 14. En Telephony selecciona el menú VoIP calls. Verás que se lista la llamada de voz IP capturada en una ventana emergente. Selecciona esa llamada y pulsa el botón Graph.
- ** ¿Cuánto dura la conversación?
+ ** ¿Cuánto dura la conversación? 24.80289s
  ** ¿Cuáles son sus SSRC? ¿Por qué hay varios SSRCs? ¿Hay CSRCs?
-
+	Hay dos SSRC, uno para cada flujo. 0xbf4afd37 para audio y 0x43306582 para video.
 
 15. Identifica la trama donde se finaliza la conversación.
  ** ¿Qué método SIP se utiliza?
