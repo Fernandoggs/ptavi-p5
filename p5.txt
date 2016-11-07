@@ -39,7 +39,7 @@ Se ha capturado una sesión SIP (archivo sip.cap.gz), que se puede abrir con Wir
 
 
 6. A continuación, hay más de una docena de tramas TCP/HTTP.
- ** ¿Podrías decir la URL que se está pidiendo?  http://ekiga.net/ip/l
+ ** ¿Podrías decir la URL que se está pidiendo?  http://ekiga.net/ip/
  ** ¿Qué user agent (UA) la está pidiendo?  Ekiga
  ** ¿Qué devuelve el servidor? Direccion ip 83.36.48.212
  ** Si lanzamos el navegador web, por ejemplo, Mozilla Firefox, y vamos a la misma URL, ¿qué recibimos? ¿Qué es, entonces, lo que está respondiendo el servidor?
