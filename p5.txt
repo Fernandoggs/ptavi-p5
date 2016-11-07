@@ -81,7 +81,7 @@ Si
 	RTP: protocolo de nivel de sesión que se utiliza para intercambio audiovisual en directo.
  ** ¿Cuál es el tamaño de paquete de los mismos? Los paquetes RTP tienen un tamaño fijo de 214 bytes, mientras que los paquetes del protocolo H.261 tienen un tamaño variable (1037,1077,1018,...[bytes])
  ** ¿Se utilizan bits de padding? No
- ** ¿Cuál es la periodicidad de los paquetes que se envían? Entre 2 y 3 centesimas de segundo.
+ ** ¿Cuál es la periodicidad de los paquetes que se envían? El timestamp tiene un valor de 160 y se transmite a 64kb/s, por tanto 64000/(8*160)=50 paquetes/segundo. El perido de los paquetes será por tanto 1/50= 0.02s
  ** ¿Cuántos bits/segundo estamos enviando? 132328 bits.
 
 
@@ -138,16 +138,20 @@ Captura de una sesión SIP
 Captura una sesión SIP de una conversación con el número SIP sip:9999@qxip.net. Tendrás que dar de alta una cuenta en www.ekiga.net con el navegador. Recuerda también que has de comenzar a capturar tramas antes de arrancar Ekiga para ver todo el proceso en el que participa SIP. Para realizar los siguientes ejercicios, deberás crearte una cuenta en ekiga.net y darte de alta la lanzar la aplicación.
 
 17. Observa las diferencias en el inicio de la conversación entre el entorno del laboratorio y el del ejercicio anterior:
- ** ¿Es necesario el uso de DNS y STUN? ¿Por qué?
- ** ¿Son diferentes el registro y la descripción de la sesión?
+ ** ¿Es necesario el uso de DNS y STUN? ¿Por qué? No es necesario puesto que estamos trabajando con ip publicas. DNS se utiliza para la asignación de nombres de dominio a una dirección IP y STUN para obtener una ip publica cuando se trabaja detras de un router NAT.
+ ** ¿Son diferentes el registro y la descripción de la sesión? Si, ya que ahora al trabajar con ip publica están permitidos más metodos de SIP que anteriormente, SUBSCRIBE, INFO, PING y PRACK.
 
 
 18. Identifica las diferencias existentes entre esta conversación y la conversación anterior:
- ** ¿Cuántos flujos tenemos?
- ** ¿Cuál es su periodicidad?
+ ** ¿Cuántos flujos tenemos? Dos flujos de audio codificados en g.711, uno para cada sentido de la comunicación.
+ ** ¿Cuál es su periodicidad? Como antes tenemos un timestamp de 160, por tanto el periodo será 0.02s
  ** ¿Cuánto es el valor máximo del delta y los valores medios y máximo del jitter?
+	Valor maximo de delta--> 30.4ms
+	Valor medio Jitter--> 3.06ms
+	Valor maximo Jitter-->4.5ms
  ** ¿Podrías reproducir la conversación desde Wireshark? ¿Cómo? Comprueba que poniendo un valor demasiado pequeño para el buffer de jitter, la conversación puede no tener la calidad necesaria.
- ** ¿Sabrías decir qué tipo de servicio ofrece sip:9999@qxip.net?
+	Si se puede, pero en el entorno de laboratorio no funciona, en teoria cuanto mas pequeño sea el buffer más entrecortado se escuchará el audio.
+ ** ¿Sabrías decir qué tipo de servicio ofrece sip:music@iptel.org? Musica.
 
 
 
