@@ -89,18 +89,24 @@ Si
 [Al terminar el ejercicio es recomendable hacer commit de los ficheros modificados]
 
 12. Vamos a ver más a fondo el intercambio RTP. En Telephony hay una opción RTP. Empecemos mirando los flujos RTP.
- ** ¿Cuántos flujos hay? ¿por qué?
- ** ¿Cuántos paquetes se pierden?
- ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta?
+ ** ¿Cuántos flujos hay? ¿por qué? Dos, uno para el protocolo H.261 y otro para RTP.
+ ** ¿Cuántos paquetes se pierden? Ninguno.
+ ** ¿Cuál es el valor máximo del delta? ¿Y qué es lo que significa el valor de delta? 1290.479 ms para h261 y 1290.444ms para RTP. Es el retardo de un paquete con respecto al anterior.
  ** ¿Cuáles son los valores de jitter (medio y máximo)? ¿Qué quiere decir eso? ¿Estamos ante una conversación de calidad?
-
+	RTP--> Valor medio Jitter: 42.5ms
+		   Valor máximo Jitter: 119.64ms
+	H.261--> Valor medio Jitter: 153.24ms
+	   	     Valor máximo Jitter: 183.10ms
+	Si, estamos ante una conexión de calidad.
 
 13. Elige un paquete RTP de audio. Analiza el flujo de audio en Telephony -> RTP -> Stream Analysis.
- ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado?
- ** ¿Podemos saber si éste es el primer paquete que nos han enviado?
- ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál?
- ** ¿A qué se debe el cambio tan brusco del jitter?
- ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué?
+ ** ¿Cuánto valen el delta y el jitter para el primer paquete que ha llegado? 0.00ms en ambos casos
+ ** ¿Podemos saber si éste es el primer paquete que nos han enviado? Sí porque el valor de delta es 0.00ms
+ ** Los valores de jitter son menores de 10ms hasta un paquete dado. ¿Cuál? El paquete 247 que tiene un Jitter de 38.82ms
+ ** ¿A qué se debe el cambio tan brusco del jitter? Al retardo alto del último paquete, que puede ser debido a una saturación de la red, falta de sincronismo, etc.
+ ** ¿Es comparable este cambio con el tiempo desde la recepción del paquete anterior? ¿Por qué? 
+	Si, es comparable,porque el jitter varía en función del valor de delta, que en este caso ha sido considerablemente mayor.
+
  ** ¿Cuál es la dependencia entre el tiempo transcurrido desde el paquete anterior y el valor de jitter?
 
 
